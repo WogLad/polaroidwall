@@ -1,10 +1,9 @@
 import './App.css'
-import viteLogo from '/vite.svg';
-import { Polaroid } from './Polaroid'
+import { Wall } from "./Wall";
 
 function App() {
   return (
-      <Polaroid path={viteLogo} />
+      <Wall polaroidCount={5} />
   )
 }
 
