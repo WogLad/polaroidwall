@@ -1,8 +1,8 @@
 import React from "react";
 import "./Polaroid.css";
 
-export const Polaroid: React.FunctionComponent<{path: string}> = (data) => {
+export const Polaroid: React.FunctionComponent<{path: string}> = ({path}) => {
     return <div className="polaroid">
-        <img src={data.path} alt="Image" />
+        <img src={path} alt="Image" />
     </div>
 }
