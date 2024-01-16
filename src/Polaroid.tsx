@@ -21,7 +21,6 @@ export const Polaroid: React.FunctionComponent<{path: string, zIndexHooks: {maxZ
         if (movable) {return} // For some reason the movement logic breaks without this. The zIndex now updates when the div is placed down instead of when it is picked up.
         div.style.zIndex = zIndexHooks.maxZIndex + 1;
         zIndexHooks.setMaxZIndex(zIndexHooks.maxZIndex + 1);
-        
     }
 
     function dragLogic(e: React.PointerEvent<HTMLDivElement>) {
