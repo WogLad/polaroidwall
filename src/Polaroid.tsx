@@ -3,7 +3,6 @@ import "./Polaroid.css";
 
 export const Polaroid: React.FunctionComponent<{path: string, zIndexHooks: {maxZIndex: any, setMaxZIndex: any}}> = ({path, zIndexHooks}) => {
     var movable: boolean = false;
-    var offset: {x: number, y: number};
 
     const [selectedImage, setSelectedImage] = useState<string | null>(path);
 
@@ -31,10 +30,6 @@ export const Polaroid: React.FunctionComponent<{path: string, zIndexHooks: {maxZ
     function onClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
         movable = !movable;
         const div: HTMLDivElement = e.target as HTMLDivElement;
-        offset = {
-            x: e.clientX - div.getBoundingClientRect().left,
-            y: e.clientY - div.getBoundingClientRect().top
-        };
         if (movable) {return} // For some reason the movement logic breaks without this. The zIndex now updates when the div is placed down instead of when it is picked up.
         div.style.zIndex = zIndexHooks.maxZIndex + 1;
         zIndexHooks.setMaxZIndex(zIndexHooks.maxZIndex + 1);
