@@ -1,9 +1,26 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import "./Polaroid.css";
 
 export const Polaroid: React.FunctionComponent<{path: string, zIndexHooks: {maxZIndex: any, setMaxZIndex: any}}> = ({path, zIndexHooks}) => {
     var movable: boolean = false;
     var offset: {x: number, y: number};
+
+    const [selectedImage, setSelectedImage] = useState<string | null>(path);
+
+    function handleImageChange(e: ChangeEvent<HTMLInputElement>) {
+        const file = e.target.files?.[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const imageDataURL = reader.result as string;
+                setSelectedImage(imageDataURL);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        (e.target as HTMLInputElement).remove();
+    }
 
     function setup(div: HTMLDivElement) {
         div.style.top = `${window.innerHeight/2}px`;
@@ -34,6 +51,8 @@ export const Polaroid: React.FunctionComponent<{path: string, zIndexHooks: {maxZ
         onPointerMove={(e) => {dragLogic(e)}}
         onLoad={(e) => {setup(((e.target as HTMLDivElement).parentElement) as HTMLDivElement)}}
     >
-        <img src={path} alt="Polaroid Image" />
+        <img style={{backgroundImage: `url(${selectedImage as string})`}} alt="Polaroid Image" src={"https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png"} />
+        <br />
+        <input style={{width: "88px"}} type='file' accept='image/*' onChange={(e) => {handleImageChange(e)}} />
     </div>
 }

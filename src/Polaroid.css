@@ -10,9 +10,13 @@ div.polaroid {
 }
 
 img {
-    background: black;
-    height: 2.02in;
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+    min-height: 2.02in;
     max-height: 2.02in;
+    max-width: 187px;
+    min-width: 187px;
     margin: auto;
     pointer-events: none;
     margin-top: 20px;

@@ -5,6 +5,6 @@ export const Wall: React.FunctionComponent<{polaroidCount: number}> = ({polaroid
     const [maxZIndex, setMaxZIndex] = useState(0);
 
     return <div>
-        {[...Array(polaroidCount)].map((object, i) => <Polaroid key={`${i}`} path={"/vite.svg"} zIndexHooks={{maxZIndex: maxZIndex, setMaxZIndex: setMaxZIndex}} />)}
+        {[...Array(polaroidCount)].map((_object, i) => <Polaroid key={`${i}`} path={"/vite.svg"} zIndexHooks={{maxZIndex: maxZIndex, setMaxZIndex: setMaxZIndex}} />)}
     </div>
 }
